@@ -84,8 +84,9 @@
     [self textChanged:nil];
 }
 
-- (void)drawRect:(CGRect)rect
+-(void)layoutSubviews
 {
+    [super layoutSubviews];
     if( [[self placeholder] length] > 0 )
     {
         if (_placeHolderLabel == nil )
@@ -100,18 +101,16 @@
             _placeHolderLabel.tag = 999;
             [self addSubview:_placeHolderLabel];
         }
-        
+
         _placeHolderLabel.text = self.placeholder;
         [_placeHolderLabel sizeToFit];
         [self sendSubviewToBack:_placeHolderLabel];
     }
-    
+
     if( [[self text] length] == 0 && [[self placeholder] length] > 0 )
     {
         [[self viewWithTag:999] setAlpha:1];
     }
-    
-    [super drawRect:rect];
 }
 
 @end
